@@ -1,0 +1,26 @@
+const palindrome = require('./logic_tests/for_testin').palindrome
+
+describe('palindrome', () => {
+    test('palidrome of a', () => {
+        const result = palindrome('a')
+    
+        expect(result).toBe('a')
+    })
+    
+    test('palidrome of react', () => {
+        const result = palindrome('react')
+    
+        expect(result).toBe('tcaer')
+    })
+    
+    test('palidrome of releveler', () => {
+        const result = palindrome('releveler')
+    
+        expect(result).toBe('releveler')
+    })    
+})
+
+
+
+
+
