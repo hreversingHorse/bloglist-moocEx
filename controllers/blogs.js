@@ -1,22 +1,13 @@
 const Blog = require('../models/blog')
 const app = require('../app')
-const router = require('express').Router()
+const blogsRouter = require('express').Router()
 
-router.get('/', async(request,response) => {
+blogsRouter.get('/', async(request,response) => {
   const toRespond = await Blog.find({})
   response.json(toRespond)
 })
-
-
-// router.get('/', (request, response) => {
-//     Blog
-//       .find({})
-//       .then(blogs => {
-//         response.json(blogs)
-//       })
-// })
   
-router.post('/', async(request, response) => {
+blogsRouter.post('/', async(request, response) => {
   const body = request.body
 
   if (body.title === undefined || body.url === undefined){
@@ -34,21 +25,37 @@ router.post('/', async(request, response) => {
   }
 })
 
-// router.post('/', (request, response) => {
-//     const body = request.body
+blogsRouter.delete('/:id', async(request, response) => {
+  const id = request.params.id
+
+  try{
+    await Blog.findByIdAndDelete(id)
+    response.status(204).end()
+  } catch (error) {
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
+      return response.status(400).send({ error: 'malformatted id' })
+    }
+  }
+})
   
-//     const blogToSave = new Blog ({
-//       title: body.title,
-//       author: body.author,
-//       url: body.url,
-//       likes: body.likes
-//     })
-  
-//     blogToSave
-//       .save()
-//       .then(result => {
-//         response.status(200).json(result)
-//       })
-// })
-  
-module.exports = router
+blogsRouter.put('/:id', async(request, response) => {
+  const body = request.body
+
+  const blogToPut = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes || 0
+  }
+
+  try {
+    const result = await Blog.findByIdAndUpdate(request.params.id, blogToPut, {new: true})
+    response.json(result.toJSON())  
+  } catch (exception) {
+    console.log(exception)
+    response.status(404).end()
+  }
+})
+
+
+module.exports = blogsRouter
