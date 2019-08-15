@@ -8,7 +8,8 @@
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "watch": "cross-env NODE_ENV=development nodemon index.js",
     "test-api": "npx jest tests/api_tests/api_test.test.js",
-    "test-logic": "npx jest tests/logic_tests"
+    "test-logic": "npx jest tests/logic_tests",
+    "build-front-copy": "rm -rf build ; cd ../bloglist-frontend && npm run-script build && mv build ../bloglist-moocEx"
   },
   "author": "",
   "license": "ISC",

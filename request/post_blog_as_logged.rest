@@ -1,9 +1,9 @@
 post http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3Rpbmd1c2VyMTIzIiwiaWQiOiI1ZDUyY2JiNzA4ODhiZjJhNGI3YjBmNWEiLCJpYXQiOjE1NjU3MDgwOTh9.wClG5qAn4pbw3bfJTdVsBsJHsEnG05ezyQxmmV8tJto
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN6eW1vbmZsaXNvMjIyMiIsImlkIjoiNWQ1MmNhYTgzOWM3MWEyOTBhNzY4ZDA5IiwiaWF0IjoxNTY1ODc1MDc0fQ.CyYoRxQjR0fV83Hwejhwu9kIZ5RmfQIubEQzso0EhDM
 
 {
-    "title":"posted with Authorization: ",
+    "title":"szymonfliso2222 blog 3",
     "author":"123",
     "url":"someurl",
     "likes": 123

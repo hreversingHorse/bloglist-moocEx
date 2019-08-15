@@ -7,7 +7,13 @@ blogsRouter.get('/', async(request,response) => {
   const toRespond = await Blog.find({}).populate('user')
   response.json(toRespond)
 })
-  
+
+blogsRouter.get('/:id', async(request,response) => {
+  const toRespond = await Blog.findById(request.params.id)
+  response.json(toRespond)
+})
+
+
 const getTokenFrom = (request) => {
   const authorization = request.get('authorization')
   if(authorization && authorization.toLowerCase().startsWith('bearer ')){
@@ -17,6 +23,7 @@ const getTokenFrom = (request) => {
 
 blogsRouter.post('/', async(request, response) => {
   const body = request.body
+  console.log(body)
 
   const token = getTokenFrom(request)
 
